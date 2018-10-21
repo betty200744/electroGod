@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+
+<script>
+	const adb = require('./adb');
+
+	function getDeviceElem(device) {
+	  let deviceElem = document.createElement('div');
+	  let nameElem = document.createElement('div');
+	  nameElem.innerText = device;
+	  deviceElem.appendChild(nameElem);
+	  return deviceElem;
+	}
+
+	adb.getDevices().then((devices) => {
+	  const leftPart = document.getElementsByClassName('left-part').item(0);
+	  devices.forEach((device) => {
+	    leftPart.appendChild(getDeviceElem(device))
+	  })
+	});
+
+</script>
+<body>
+<div class="left-part"></div>
+<div class="right-part"></div>
+
+</body>
+</html>
